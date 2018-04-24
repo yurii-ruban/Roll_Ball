@@ -5,30 +5,23 @@
 #include <QTimer>
 #include <QSignalSpy>
 #include <QTest>
+#include "ball.h"
 
 class Logic : public QObject
 {
     Q_OBJECT
 
 private:
-    int x;
-    int y;
-    int w;
-    int h;
-    int direct;
+    Ball bouncy;
     QTimer *m_timer;
     QSignalSpy *spy;
 
 public:
     explicit Logic(QObject *parent = nullptr);
     ~Logic();
-    int get_x();
-    int get_y();
-    int get_w();
-    int get_h();
-    int get_direct();
+    void set_ball(Ball& _bouncy);
+    Ball get_ball();
     void move();
-
 signals:
     void finished();
     void sendData(int x, int direct);

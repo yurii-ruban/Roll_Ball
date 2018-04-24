@@ -2,68 +2,48 @@
 
 Logic::Logic(QObject *parent) : QObject(parent)
 {
-    y=200;
-    w=100;
-    h=100;
+    bouncy.set_y(200);
+    bouncy.set_w(100);
+    bouncy.set_h(100);
 }
 
 Logic::~Logic()
 {
-    //QSignalSpy spy(m_timer, SIGNAL(destroyed(QObject*)));
-//    QEXPECT_FAIL("", "Will fix in the next release", Continue);
-//    QCOMPARE(spy.count(), 2);
-    //QVERIFY(spy.count()==0);
     delete spy;
 }
 
-int Logic::get_x()
+void Logic::set_ball(Ball &_bouncy)
 {
-    return x;
+    this->bouncy=_bouncy;
 }
 
-int Logic::get_y()
+Ball Logic::get_ball()
 {
-    return y;
+    return bouncy;
 }
-
-int Logic::get_w()
-{
-    return w;
-}
-
-int Logic::get_h()
-{
-    return h;
-}
-
-int Logic::get_direct()
-{
-    return direct;
-}
-
 
 void Logic::move()
 {
-    if(x>=596)
+    if(bouncy.get_x()>=596)
     {
-        direct=0;
+        bouncy.set_direct(0);
     }
-    else if  (x<=4)
+    else if  (bouncy.get_x()<=4)
     {
-        direct=1;
+        bouncy.set_direct(1);
     }
 
-    switch (direct)
+    switch (bouncy.get_direct())
     {
     case 0:
-        x--;
+        bouncy.set_x(--bouncy.get_x());
         break;
     case 1:
-        x++;
+        bouncy.set_x(++bouncy.get_x());
         break;
     }
 
-    emit sendData(x, direct);
+    emit sendData(bouncy.get_x(), bouncy.get_direct());
 }
 
 void Logic::run()
@@ -79,8 +59,8 @@ void Logic::run()
 
 void Logic::setter(int x, int direct)
 {
-    this->x=x;
-    this->direct=direct;
+    this->bouncy.set_x(x);
+    this->bouncy.set_direct(direct);
 }
 
 void Logic::finish()

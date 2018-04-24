@@ -27,12 +27,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     saver.cpp \
-    logic.cpp
+    logic.cpp \
+    ball.cpp
 
 HEADERS += \
         mainwindow.h \
     saver.h \
-    logic.h
+    logic.h \
+    ball.h
 
 FORMS += \
         mainwindow.ui

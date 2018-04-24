@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_some2.moveToThread(&m_thread2);
 
     m_manager.read_dataBase(m_some1);
-    m_some2.setter(m_some1.get_x(), m_some1.get_direct());
+    m_some2.setter(m_some1.get_ball().get_x(), m_some1.get_ball().get_direct());
 }
 
 void MainWindow::paintEvent(QPaintEvent *event)
@@ -26,7 +26,7 @@ void MainWindow::paintEvent(QPaintEvent *event)
     QPainter painter(this);
     painter.setPen(QPen(Qt::black,2,Qt::SolidLine, Qt::FlatCap));
     painter.setBrush(Qt::cyan);
-    painter.drawEllipse(m_some2.get_x(),m_some2.get_y(),m_some2.get_w(),m_some2.get_h());
+    painter.drawEllipse(m_some2.get_ball().get_x(),m_some2.get_ball().get_y(),m_some2.get_ball().get_w(),m_some2.get_ball().get_h());
     update();
 }
 

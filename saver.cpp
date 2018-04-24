@@ -39,8 +39,8 @@ bool Saver::write_dataBase(Logic &S)
     }
     QSqlQuery query(m_db);
     query.prepare("UPDATE ball SET x=:x, direct=:direct WHERE id=1");
-    query.addBindValue(S.get_x());
-    query.addBindValue(S.get_direct());
+    query.addBindValue(S.get_ball().get_x());
+    query.addBindValue(S.get_ball().get_direct());
     if(!query.exec())
     {
         return 0;
@@ -75,9 +75,9 @@ bool Saver::write_file(Logic& S)
     {
         return 0;
     }
-    m_log.write((std::to_string(S.get_x())).c_str());
+    m_log.write((std::to_string(S.get_ball().get_x())).c_str());
     m_log.write("\n");
-    m_log.write((std::to_string(S.get_direct())).c_str());
+    m_log.write((std::to_string(S.get_ball().get_direct())).c_str());
     m_log.close();
     return 1;
 }
