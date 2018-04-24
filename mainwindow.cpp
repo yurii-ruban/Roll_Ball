@@ -7,17 +7,21 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    connect (&m_thread1,&QThread::started, &m_some1, &Logic::run);
-    connect (&m_some1,&Logic::sendData, &m_some2, &Logic::setter);
-    connect(&m_some1, &Logic::finished, &m_thread1, &QThread::quit, Qt::DirectConnection);
-    connect(&m_some1, &Logic::finished, &m_thread2, &QThread::quit, Qt::DirectConnection);
-    connect(this, &MainWindow::end, &m_some1, &Logic::finish);
+    connect (&m_thread1,&QThread::started, &m_counter, &Logic::run);
+    connect (&m_counter,&Logic::sendData, &m_drawer, &Logic::setter);
+    connect(&m_counter, &Logic::finished, &m_thread1, &QThread::quit, Qt::DirectConnection);
+    connect(&m_counter, &Logic::finished, &m_thread2, &QThread::quit, Qt::DirectConnection);
+    connect(this, &MainWindow::end, &m_counter, &Logic::finish);
 
-    m_some1.moveToThread(&m_thread1);
-    m_some2.moveToThread(&m_thread2);
+    m_counter.moveToThread(&m_thread1);
+    m_drawer.moveToThread(&m_thread2);
 
-    m_manager.read_dataBase(m_some1);
-    m_some2.setter(m_some1.get_ball().get_x(), m_some1.get_ball().get_direct());
+    if(!(m_manager.read_dataBase(m_counter)))
+    {
+        qDebug()<<"DATA WASN'T READED";
+    }
+
+    m_drawer.setter(m_counter.get_ball().get_x(), m_counter.get_ball().get_direct());
 }
 
 void MainWindow::paintEvent(QPaintEvent *event)
@@ -25,8 +29,8 @@ void MainWindow::paintEvent(QPaintEvent *event)
     Q_UNUSED(event);
     QPainter painter(this);
     painter.setPen(QPen(Qt::black,2,Qt::SolidLine, Qt::FlatCap));
-    painter.setBrush(Qt::cyan);
-    painter.drawEllipse(m_some2.get_ball().get_x(),m_some2.get_ball().get_y(),m_some2.get_ball().get_w(),m_some2.get_ball().get_h());
+    painter.setBrush(Qt::green);
+    painter.drawEllipse(m_drawer.get_ball().get_x(),m_drawer.get_ball().get_y(),m_drawer.get_ball().get_w(),m_drawer.get_ball().get_h());
     update();
 }
 
@@ -40,7 +44,10 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 MainWindow::~MainWindow()
 {
-    m_manager.write_dataBase(m_some1);
+    if(!(m_manager.write_dataBase(m_counter)))
+    {
+     qDebug()<<"DATA WASN'T SAVED";
+    }
     delete ui;
 }
 

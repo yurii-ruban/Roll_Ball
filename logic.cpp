@@ -2,55 +2,48 @@
 
 Logic::Logic(QObject *parent) : QObject(parent)
 {
-    bouncy.set_y(200);
-    bouncy.set_w(100);
-    bouncy.set_h(100);
+    m_bouncy.set_y(200);
+    m_bouncy.set_w(100);
+    m_bouncy.set_h(100);
 }
 
 Logic::~Logic()
 {
-    delete spy;
-}
-
-void Logic::set_ball(Ball &_bouncy)
-{
-    this->bouncy=_bouncy;
 }
 
 Ball Logic::get_ball()
 {
-    return bouncy;
+    return m_bouncy;
 }
 
 void Logic::move()
 {
-    if(bouncy.get_x()>=596)
+    int x=m_bouncy.get_x();
+    if(m_bouncy.get_x()>=596)
     {
-        bouncy.set_direct(0);
+        m_bouncy.set_direct(1);
     }
-    else if  (bouncy.get_x()<=4)
+    else if  (m_bouncy.get_x()<=4)
     {
-        bouncy.set_direct(1);
+        m_bouncy.set_direct(0);
     }
 
-    int x=bouncy.get_x();
-    switch (bouncy.get_direct())
+    switch (m_bouncy.get_direct())
     {
     case 0:
-        bouncy.set_x(--x);
+        m_bouncy.set_x(++x);
         break;
     case 1:
-        bouncy.set_x(++x);
+        m_bouncy.set_x(--x);
         break;
     }
 
-    emit sendData(bouncy.get_x(), bouncy.get_direct());
+    emit sendData(m_bouncy.get_x(), m_bouncy.get_direct());
 }
 
 void Logic::run()
 {
     m_timer= new QTimer(this);
-    spy= new QSignalSpy(m_timer, SIGNAL(destroyed(QObject*)));
     connect(m_timer, &QTimer::timeout, this, &Logic::move);
     m_timer->setInterval(2);
     m_timer->start();
@@ -58,16 +51,15 @@ void Logic::run()
 
 }
 
-void Logic::setter(int x, int direct)
+void Logic::setter(int x, bool direct)
 {
-    this->bouncy.set_x(x);
-    this->bouncy.set_direct(direct);
+    this->m_bouncy.set_x(x);
+    this->m_bouncy.set_direct(direct);
 }
 
 void Logic::finish()
 {
     m_timer->stop();
     delete m_timer;
-    Q_ASSERT(spy->count()==1);
     emit finished();
 }

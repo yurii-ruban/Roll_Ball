@@ -4,7 +4,6 @@
 
 Saver::Saver()
 {
-
 }
 
 bool Saver::read_dataBase(Logic& S)
@@ -17,21 +16,21 @@ bool Saver::read_dataBase(Logic& S)
        return 1;
     }
     int x_;
-    int y_;
+    bool direct_;
     QSqlQuery query(m_db);
     query.exec("SELECT x, direct FROM ball WHERE id=1");
 
     while(query.next())
     {
         x_=query.value(0).toInt();
-        y_=query.value(1).toInt();
-        S.setter(x_,y_);
-        qDebug()<<x_<<" "<<y_;
+        direct_=query.value(1).toBool();
+        S.setter(x_,direct_);
+        qDebug()<<x_<<" "<<direct_;
     }
     return 1;
 }
 
-bool Saver::write_dataBase(Logic &S)
+bool Saver::write_dataBase(Logic& S)
 {
     if(!m_db.isValid())
     {
@@ -65,7 +64,8 @@ bool Saver::read_file(Logic& S)
     bool OK;
     a= strList[0];
     b= strList[1];
-    S.setter(a.toInt(&OK),b.toInt(&OK));
+    bool c= b.toInt(&OK);
+    S.setter(a.toInt(&OK),c);
     return 1;
 }
 

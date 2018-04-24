@@ -25,7 +25,7 @@ int Ball::get_h()
     return h;
 }
 
-int Ball::get_direct()
+bool Ball::get_direct()
 {
     return direct;
 }
@@ -50,7 +50,7 @@ void Ball::set_h(int _h)
     h=_h;
 }
 
-void Ball::set_direct(int _direct)
+void Ball::set_direct(bool _direct)
 {
     direct=_direct;
 }

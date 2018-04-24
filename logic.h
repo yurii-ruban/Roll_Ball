@@ -12,23 +12,21 @@ class Logic : public QObject
     Q_OBJECT
 
 private:
-    Ball bouncy;
+    Ball m_bouncy;
     QTimer *m_timer;
-    QSignalSpy *spy;
 
 public:
     explicit Logic(QObject *parent = nullptr);
     ~Logic();
-    void set_ball(Ball& _bouncy);
     Ball get_ball();
     void move();
 signals:
     void finished();
-    void sendData(int x, int direct);
+    void sendData(int x, bool direct);
 
 public slots:
     void run();
-    void setter(int x, int direct);
+    void setter(int x, bool direct);
     void finish();
 };
 

@@ -34,8 +34,8 @@ private slots:
 private:
     QThread m_thread1;
     QThread m_thread2;
-    Logic m_some1;
-    Logic m_some2;
+    Logic m_counter;
+    Logic m_drawer;
     Saver m_manager;
     Ui::MainWindow *ui;
 };
