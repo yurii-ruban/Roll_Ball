@@ -9,15 +9,15 @@ Saver::Saver()
 
 void Saver::read_dataBase(SomeClass& S)
 {
-    db =QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("Point");
-    if(!db.isOpen())
+    m_db =QSqlDatabase::addDatabase("QSQLITE");
+    m_db.setDatabaseName("Point");
+    if(!m_db.isOpen())
     {
-        if(db.open())
+        if(m_db.open())
         {
             int x_;
             int y_;
-            QSqlQuery query(db);
+            QSqlQuery query(m_db);
             query.exec("SELECT x, direct FROM ball WHERE id=1");
 
             while(query.next())
@@ -37,7 +37,7 @@ void Saver::read_dataBase(SomeClass& S)
 
 void Saver::write_dataBase(SomeClass &S)
 {
-    QSqlQuery query(db);
+    QSqlQuery query(m_db);
     query.prepare("UPDATE ball SET x=:x, direct=:direct WHERE id=1");
     query.addBindValue(S.get_x());
     query.addBindValue(S.get_direct());
@@ -46,16 +46,16 @@ void Saver::write_dataBase(SomeClass &S)
 
 void Saver::read_file(SomeClass& S)
 {
-    file.setFileName("test.txt");
-    if ((file.exists())&&(file.open(QIODevice::ReadOnly)))
+    m_log.setm_logName("test.txt");
+    if ((m_log.exists())&&(m_log.open(QIODevice::ReadOnly)))
     {
         QString a,b;
         QStringList strList;
-        while(!file.atEnd())
+        while(!m_log.atEnd())
         {
-            strList << file.readLine();
+            strList << m_log.readLine();
         }
-        file.close();
+        m_log.close();
         bool OK;
         a= strList[0];
         b= strList[1];
@@ -65,11 +65,11 @@ void Saver::read_file(SomeClass& S)
 
 void Saver::write_file(SomeClass& S)
 {
-    if (file.open(QIODevice::WriteOnly))
+    if (m_log.open(QIODevice::WriteOnly))
     {
-        file.write((std::to_string(S.get_x())).c_str());
-        file.write("\n");
-        file.write((std::to_string(S.get_direct())).c_str());
-        file.close();
+        m_log.write((std::to_string(S.get_x())).c_str());
+        m_log.write("\n");
+        m_log.write((std::to_string(S.get_direct())).c_str());
+        m_log.close();
     }
 }

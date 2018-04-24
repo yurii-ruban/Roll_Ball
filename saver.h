@@ -16,8 +16,8 @@ public:
     void read_file(SomeClass& S);
     void write_file(SomeClass &S);
 private:
-    QFile file;
-    QSqlDatabase db;
+    QFile m_log;
+    QSqlDatabase m_db;
 };
 
 #endif // SAVER_H
