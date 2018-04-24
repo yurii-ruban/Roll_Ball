@@ -11,10 +11,10 @@ class Saver
 {
 public:
     Saver();
-    void read_dataBase(Logic& S);
-    void write_dataBase(Logic& S);
-    void read_file(Logic& S);
-    void write_file(Logic &S);
+    bool read_dataBase(Logic& S);
+    bool write_dataBase(Logic& S);
+    bool read_file(Logic& S);
+    bool write_file(Logic &S);
 private:
     QFile m_log;
     QSqlDatabase m_db;
