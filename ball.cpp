@@ -25,6 +25,11 @@ int Ball::get_h()
     return h;
 }
 
+int Ball::get_direct()
+{
+    return direct;
+}
+
 void Ball::set_x(int _x)
 {
     x=_x;

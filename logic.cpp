@@ -33,13 +33,14 @@ void Logic::move()
         bouncy.set_direct(1);
     }
 
+    int x=bouncy.get_x();
     switch (bouncy.get_direct())
     {
     case 0:
-        bouncy.set_x(--bouncy.get_x());
+        bouncy.set_x(--x);
         break;
     case 1:
-        bouncy.set_x(++bouncy.get_x());
+        bouncy.set_x(++x);
         break;
     }
 
