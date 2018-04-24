@@ -7,11 +7,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    connect (&m_thread1,&QThread::started, &m_some1, &SomeClass::run);
-    connect (&m_some1,&SomeClass::sendData, &m_some2, &SomeClass::setter);
-    connect(&m_some1, &SomeClass::finished, &m_thread1, &QThread::quit, Qt::DirectConnection);
-    connect(&m_some1, &SomeClass::finished, &m_thread2, &QThread::quit, Qt::DirectConnection);
-    connect(this, &MainWindow::end, &m_some1, &SomeClass::finish);
+    connect (&m_thread1,&QThread::started, &m_some1, &Logic::run);
+    connect (&m_some1,&Logic::sendData, &m_some2, &Logic::setter);
+    connect(&m_some1, &Logic::finished, &m_thread1, &QThread::quit, Qt::DirectConnection);
+    connect(&m_some1, &Logic::finished, &m_thread2, &QThread::quit, Qt::DirectConnection);
+    connect(this, &MainWindow::end, &m_some1, &Logic::finish);
 
     m_some1.moveToThread(&m_thread1);
     m_some2.moveToThread(&m_thread2);

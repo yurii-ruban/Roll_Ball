@@ -1,12 +1,12 @@
-#ifndef SOMECLASS_H
-#define SOMECLASS_H
+#ifndef Logic_H
+#define Logic_H
 
 #include <QObject>
 #include <QTimer>
 #include <QSignalSpy>
 #include <QTest>
 
-class SomeClass : public QObject
+class Logic : public QObject
 {
     Q_OBJECT
 
@@ -20,8 +20,8 @@ private:
     QSignalSpy *spy;
 
 public:
-    explicit SomeClass(QObject *parent = nullptr);
-    ~SomeClass();
+    explicit Logic(QObject *parent = nullptr);
+    ~Logic();
     int get_x();
     int get_y();
     int get_w();
@@ -39,4 +39,4 @@ public slots:
     void finish();
 };
 
-#endif // SOMECLASS_H
+#endif // Logic_H

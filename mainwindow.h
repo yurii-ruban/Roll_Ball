@@ -5,10 +5,9 @@
 #include <QPainter>
 #include <QThread>
 #include <QCloseEvent>
-#include "someclass.h"
+#include "logic.h"
 #include "saver.h"
-#include <QSignalSpy>
-#include <QTest>
+
 namespace Ui {
 class MainWindow;
 }
@@ -35,8 +34,8 @@ private slots:
 private:
     QThread m_thread1;
     QThread m_thread2;
-    SomeClass m_some1;
-    SomeClass m_some2;
+    Logic m_some1;
+    Logic m_some2;
     Saver m_manager;
     Ui::MainWindow *ui;
 };

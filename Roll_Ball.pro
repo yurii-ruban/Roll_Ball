@@ -26,13 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    someclass.cpp \
-    saver.cpp
+    saver.cpp \
+    logic.cpp
 
 HEADERS += \
         mainwindow.h \
-    someclass.h \
-    saver.h
+    saver.h \
+    logic.h
 
 FORMS += \
         mainwindow.ui

@@ -7,7 +7,7 @@ Saver::Saver()
 
 }
 
-void Saver::read_dataBase(SomeClass& S)
+void Saver::read_dataBase(Logic& S)
 {
     m_db =QSqlDatabase::addDatabase("QSQLITE");
     m_db.setDatabaseName("Point");
@@ -35,7 +35,7 @@ void Saver::read_dataBase(SomeClass& S)
     }
 }
 
-void Saver::write_dataBase(SomeClass &S)
+void Saver::write_dataBase(Logic &S)
 {
     QSqlQuery query(m_db);
     query.prepare("UPDATE ball SET x=:x, direct=:direct WHERE id=1");
@@ -44,9 +44,9 @@ void Saver::write_dataBase(SomeClass &S)
     query.exec();
 }
 
-void Saver::read_file(SomeClass& S)
+void Saver::read_file(Logic& S)
 {
-    m_log.setm_logName("test.txt");
+    m_log.setFileName("test.txt");
     if ((m_log.exists())&&(m_log.open(QIODevice::ReadOnly)))
     {
         QString a,b;
@@ -63,7 +63,7 @@ void Saver::read_file(SomeClass& S)
     }
 }
 
-void Saver::write_file(SomeClass& S)
+void Saver::write_file(Logic& S)
 {
     if (m_log.open(QIODevice::WriteOnly))
     {

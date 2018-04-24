@@ -1,47 +1,48 @@
-#include "someclass.h"
+#include "logic.h"
 
-SomeClass::SomeClass(QObject *parent) : QObject(parent)
+Logic::Logic(QObject *parent) : QObject(parent)
 {
     y=200;
     w=100;
     h=100;
 }
 
-SomeClass::~SomeClass()
+Logic::~Logic()
 {
     //QSignalSpy spy(m_timer, SIGNAL(destroyed(QObject*)));
 //    QEXPECT_FAIL("", "Will fix in the next release", Continue);
 //    QCOMPARE(spy.count(), 2);
     //QVERIFY(spy.count()==0);
+    delete spy;
 }
 
-int SomeClass::get_x()
+int Logic::get_x()
 {
     return x;
 }
 
-int SomeClass::get_y()
+int Logic::get_y()
 {
     return y;
 }
 
-int SomeClass::get_w()
+int Logic::get_w()
 {
     return w;
 }
 
-int SomeClass::get_h()
+int Logic::get_h()
 {
     return h;
 }
 
-int SomeClass::get_direct()
+int Logic::get_direct()
 {
     return direct;
 }
 
 
-void SomeClass::move()
+void Logic::move()
 {
     if(x>=596)
     {
@@ -65,27 +66,27 @@ void SomeClass::move()
     emit sendData(x, direct);
 }
 
-void SomeClass::run()
+void Logic::run()
 {
     m_timer= new QTimer(this);
     spy= new QSignalSpy(m_timer, SIGNAL(destroyed(QObject*)));
-    connect(m_timer, &QTimer::timeout, this, &SomeClass::move);
+    connect(m_timer, &QTimer::timeout, this, &Logic::move);
     m_timer->setInterval(2);
     m_timer->start();
 
 
 }
 
-void SomeClass::setter(int x, int direct)
+void Logic::setter(int x, int direct)
 {
     this->x=x;
     this->direct=direct;
 }
 
-void SomeClass::finish()
+void Logic::finish()
 {
-    Q_ASSERT(spy->count()==0);
     m_timer->stop();
     delete m_timer;
+    Q_ASSERT(spy->count()==1);
     emit finished();
 }

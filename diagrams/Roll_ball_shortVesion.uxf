@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>860</x>
+      <y>290</y>
+      <w>350</w>
+      <h>340</h>
+    </coordinates>
+    <panel_attributes>SomeClass
+--
+-x: int
+-y: int
+-w: int
+-h :int
+-direct: int
+-m_timer: QTimer
+-m_spy: QSignalSpy
+--
++SomeClass(parent: QObject)
++get x(): int
++get_y(): int
++get_w(): int
++get_h(): int
++get_direct(): int
++setter(x: int, direct: int)
++send_data(x: int, direct: int)
++move(): void
++run(): void
++finish(): void
++finished(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>390</x>
+      <y>340</y>
+      <w>300</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>MainWindow
+--
+-m_thread_1:QThread
+-m_thread_2: QThread
+-m_some1: SomeClass
+-m_some2: SomeClass
+-m_manager: Saver
+--
+-on_Go_clicked(): void
+-on_Stop_clicked(): void
++MainWindow(parent: QWidget): void
++~MainWindow(): void
++end():void
+#paintEvent(event: QPaintEvent):void
+#closeEvent(event: QCloseEvent):void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>430</x>
+      <y>640</y>
+      <w>230</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Saver
+--
+-m_db: QSqlDatabase
+-m_log: QFile
+--
++Saver(): void
++read_file(S: SomeClass)
++write_file(S: SomeClass)
++read_bataBase(S: SomeClass)
++write_dataBase(S: SomeClass)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>290</x>
+      <y>440</y>
+      <w>160</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+works with &gt;
+m1=0..*
+m2=1..*
+</panel_attributes>
+    <additional_attributes>100.0;10.0;10.0;10.0;10.0;270.0;140.0;270.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>380</y>
+      <w>200</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+&lt; live in
+m1=1..1
+m2=2..*
+</panel_attributes>
+    <additional_attributes>10.0;20.0;180.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>650</x>
+      <y>620</y>
+      <w>350</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=-
+works with &gt;
+m1=0..*
+m2=1..*
+</panel_attributes>
+    <additional_attributes>10.0;90.0;310.0;90.0;310.0;10.0</additional_attributes>
+  </element>
+</diagram>

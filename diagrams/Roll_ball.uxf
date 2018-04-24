@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>720</x>
+      <y>400</y>
+      <w>220</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>SomeClass
+--
+-x: int
+-y: int
+-w: int
+-h :int
+-direct: int
+-m_timer: QTimer
+-m_spy: QSignalSpy
+--
++SomeClass(parent: QObject)
++get x(): int
++get_y(): int
++get_w(): int
++get_h(): int
++get_direct(): int
++setter(x: int, direct: int)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1020</x>
+      <y>430</y>
+      <w>190</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>QTimer
+--
+--
+#start(): void
+#stop(): void
+#setInterval(a: int): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>930</x>
+      <y>430</y>
+      <w>110</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+&lt; live in</panel_attributes>
+    <additional_attributes>10.0;20.0;90.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>360</x>
+      <y>450</y>
+      <w>260</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>MainWindow
+--
+-m_thread_1:QThread
+-m_thread_2: QThread
+-m_some1: SomeClass
+-m_some2: SomeClass
+-m_manager: Saver
+--
++
++
++</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>310</x>
+      <y>670</y>
+      <w>230</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Saver
+--
+-db: QSqlDatabase
+-log: QFile
+--
++read_file(S: SomeClass)
++write_file(S: SomeClass)
++read_bataBase(S: SomeClass)
++write_dataBase(S: SomeClass)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>240</x>
+      <y>550</y>
+      <w>140</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+&lt; live in</panel_attributes>
+    <additional_attributes>120.0;10.0;10.0;10.0;10.0;190.0;70.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>610</x>
+      <y>490</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+&lt; live in</panel_attributes>
+    <additional_attributes>10.0;20.0;110.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>530</x>
+      <y>630</y>
+      <w>330</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=-
+works with &gt;
+m1=0..*
+m2=1..*
+</panel_attributes>
+    <additional_attributes>10.0;110.0;290.0;110.0;290.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>530</x>
+      <y>270</y>
+      <w>150</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>QObject
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>300</y>
+      <w>150</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+inherits &gt;</panel_attributes>
+    <additional_attributes>130.0;10.0;130.0;50.0;10.0;50.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>300</y>
+      <w>250</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt; inherits</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0;230.0;50.0;230.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>150</x>
+      <y>490</y>
+      <w>120</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>QThread
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>260</x>
+      <y>500</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+live in &gt;</panel_attributes>
+    <additional_attributes>100.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>930</x>
+      <y>560</y>
+      <w>110</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+&lt; live in</panel_attributes>
+    <additional_attributes>10.0;20.0;90.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1020</x>
+      <y>560</y>
+      <w>130</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>QSignalSpy
+--
+--
+#count(): int</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
